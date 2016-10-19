@@ -16,11 +16,13 @@ public class TestCard {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Card a = new Card(Card.CLUBS,12, Color.RED, true);
-        Card b = new Card(Card.SPADES,12, Color.BLACK, true);
-        
+        Card c1 = new Card(Card.SPADES, Card.ACE, true);
+        Card c2 = new Card(Card.HEARTS, Card.ACE, true);
+        System.out.println(c1);
+        System.out.println(c2);
+
         // Testing both cards
-        System.out.println("What is the rank of the first card?");
-        System.out.println(a.isFaceUp());
+
+
     }
 }

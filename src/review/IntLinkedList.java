@@ -91,6 +91,60 @@ public class IntLinkedList {
         return node.getNum();
     }
 
+    /**
+     * Find the node containing the number
+     *
+     * @param num the number in the node
+     * @return the node containing the number
+     */
+    private IntNode findNode(int num) {
+        // Start at the beginning
+        IntNode temp = head;
+        // Walk the list
+        for (int i = 0; i < this.numThings; i++) {
+            // Is this the node i'm looking for?
+            if (temp.getNum() == num) {
+                return temp;
+            }
+            // Move to the next node
+            temp = temp.next();
+        }
+        // Haven't found a matching node 
+        return null;
+    }
+
+    /**
+     * Removes a number from the list
+     *
+     * @param num the number to remove from the list
+     */
+    public void remove(int num) {
+        // Using helper to find the node!
+        IntNode temp = this.findNode(num);
+        // If there is a node!
+        if (temp != null) {
+            // Grab the node after and before
+            IntNode next = temp.next();
+            IntNode prev = temp.prev();
+            // If there is a link to fix
+            if (next != null) {
+                // Se the nexxt node to point back to previous 
+                next.setPrev(prev);
+            }
+
+            // A previous node to fix 
+            if (prev != null) {
+                prev.setNext(next);
+            } else {
+                // Fix the start of the list
+                head = next;
+            }
+
+            // Remove 1 from counter
+            this.numThings--;
+        }
+    }
+
     public static void main(String[] args) {
         IntLinkedList myList = new IntLinkedList();
 
@@ -98,7 +152,10 @@ public class IntLinkedList {
         myList.add(7);
         myList.add(5);
         myList.add(-2);
-        myList.add(50);
+        myList.add(5);
+
+
+        myList.remove(69);
 
         // Print out the list
         for (int i = 0; i < myList.size(); i++) {
